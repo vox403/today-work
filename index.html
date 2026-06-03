@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>VOXTEK Today Work</title>
+
+  <!-- 루트 6월 3일자 마지막 수정 -->
   <style>
     :root {
       --bg:#02070d;
@@ -101,7 +103,6 @@
           이동: 방향키 / WASD 길게 누르기<br>
           상호작용: Space / Enter<br>
           업무 순서: 단말기 → CCTV → 단말기 보고<br>
-          복스 대화: 업무 완료 후 가능
         </div>
       </aside>
     </main>
@@ -389,8 +390,8 @@
     const vel = objects.find(o => o.name === "npc_velvet");
 
     if (cctv) drawObjectLabel(cctv, "CCTV");
-    if (quest) drawObjectLabel(quest, "TASK");
-    if (vox) drawObjectLabel(vox, state.done ? "VOX" : "TASK");
+    if (quest) drawObjectLabel(quest, "TERMINAL");
+    if (vox) drawObjectLabel(vox, "VOX");
     if (val) drawObjectLabel(val, "VAL");
     if (vel) drawObjectLabel(vel, "VEL");
 
@@ -564,7 +565,7 @@
     ],
     valentino: [
       {
-        q:"이런 종이 냄새 나는 일은 복스 취향이지. 넌 뭐가 좀 살아 있긴 해?",
+        q:"이런 종이 냄새 나는 일은 복스 취향이지. 넌 구멍이 쓸만 해?",
         a:[
           ["서류보다 결과가 눈에 띄게 만들겠습니다.", 1, "흐응. 좋아. 적어도 지루하게 죽진 않겠네."],
           ["맡은 일은 처리하겠습니다.", 0, "착하긴 한데, 너무 얌전해. 졸릴 정도로."],
@@ -757,7 +758,6 @@
       let res = await send(payload);
       if (res.ok) return true;
 
-      // 보조 컬럼이 없는 구버전 테이블일 때 기본 컬럼만으로 재시도
       const fallback = {
         created_at: payload.created_at,
         local_date: payload.local_date,
@@ -846,7 +846,7 @@
 
   function handleNpc(npc) {
     if (npc === "vox" && !state.done) {
-      handleTerminal();
+      openDialog("VOX", "업무부터 끝내.\n사적인 대화는 보고가 끝난 뒤에 받지.");
       return;
     }
 
@@ -979,7 +979,7 @@
       requestAnimationFrame(render);
       requestAnimationFrame(gameLoop);
       if (!state.instructed) {
-        setTimeout(() => openDialog("SYSTEM", "오늘의 업무 채널 접속 완료.\n중앙 단말기에서 지시를 수신해."), 350);
+        setTimeout(() => openDialog("SYSTEM", "오늘의 업무 채널 접속 완료.\n오른쪽 업무 단말기에서 지시를 수신해."), 350);
       }
     } catch (error) {
       loading.classList.add("error");
