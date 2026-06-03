@@ -89,13 +89,13 @@
           <div class="mission-selector-copy">
             <span>MISSION SELECTOR</span>
             <h3>채널을 선택하십시오.</h3>
-            <p>기존 생명체 관리 임무와 오늘의 업무 채널을 분기합니다.</p>
+            <p>생명체 관리 임무와 오늘의 업무 채널을 분기합니다.</p>
           </div>
           <div class="mission-selector-grid">
             <button class="mission-selector-card" id="missionOpenEggChannel" type="button">
               <small>01 / EXISTING CHANNEL</small>
               <strong>알키우기</strong>
-              <span>기존 생명체 관리 임무를 진행합니다. 기존 조건과 진행 기록은 유지됩니다.</span>
+              <span>생명체 관리 임무를 진행합니다.</span>
             </button>
             <button class="mission-selector-card" id="missionOpenTodayWorkChannel" type="button">
               <small>02 / DAILY CHANNEL</small>
